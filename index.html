@@ -262,8 +262,10 @@ main > section.section.process { position: relative; isolation: isolate; overflo
 .hs2 { z-index: 2; clip-path: polygon(0 0, 0 0, -30% 100%, 0 100%); }
 .hs3 { z-index: 3; clip-path: polygon(0 0, 0 0, -30% 100%, 0 100%); }
 .hero-shield { display: block; width: 104px; height: auto; filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .55)); }
-.hero-name { margin-top: 10px; font: 800 .8rem/1 "Nunito Sans", sans-serif; letter-spacing: .34em; padding-left: .34em; text-transform: uppercase; color: var(--ink); text-shadow: 0 2px 14px rgba(0, 0, 0, .7); }
-.hero h1 { margin-top: 14px; gap: 0; }
+.hero-plate { display: grid; justify-items: center; gap: 8px; margin-top: 12px; }
+.hero-plate b { background: var(--leaf); color: #0b2819; font: 800 clamp(1.4rem, 6vw, 2rem)/1 "Sora", sans-serif; letter-spacing: .14em; padding: 7px 10px 7px 16px; border-radius: 5px; box-shadow: 0 6px 20px rgba(0, 0, 0, .45); }
+.hero-plate span { font: 800 .68rem/1 "Nunito Sans", sans-serif; letter-spacing: .2em; padding-left: .2em; text-transform: uppercase; color: var(--ink); text-shadow: 0 2px 14px rgba(0, 0, 0, .7); }
+.hero h1 { margin-top: 24px; gap: 0; }
 .words { position: relative; display: block; height: 1.15em; width: 11ch; max-width: 92vw; font: 800 clamp(2.3rem, 11vw, 4.6rem)/1.1 "Sora", sans-serif; letter-spacing: -.01em; color: var(--ink); text-align: center; }
 .words span { position: absolute; inset: 0; opacity: 0; white-space: nowrap; }
 .words span:nth-child(1) { opacity: 1; }
@@ -271,12 +273,13 @@ main > section.section.process { position: relative; isolation: isolate; overflo
 .brand-shield { flex: none; width: 36px; height: 40px; }
 .brand-shield.foot-shield { width: 64px; height: 70px; }
 .wm { display: grid; gap: 5px; line-height: 1; }
-.wm-main { font: 800 1.15rem/1 "Sora", sans-serif; letter-spacing: .14em; color: var(--ink); }
-.wm-sub { font: 800 .56rem/1 "Nunito Sans", sans-serif; letter-spacing: .26em; text-transform: uppercase; color: var(--leaf); white-space: nowrap; }
+.wm-main { justify-self: start; background: var(--leaf); color: #0b2819; font: 800 1.15rem/1 "Sora", sans-serif; letter-spacing: .14em; padding: 5px 8px 5px 10px; border-radius: 4px; }
+.wm-sub { font: 800 .5rem/1 "Nunito Sans", sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
 .brand-stack { flex-direction: column; gap: 12px; }
 .brand-stack .wm { justify-items: center; text-align: center; }
-.brand-stack .wm-main { font-size: 1.5rem; }
-@media (max-width: 380px) { .wm-main { font-size: 1rem; letter-spacing: .1em; } .wm-sub { letter-spacing: .16em; } }
+.brand-stack .wm-main { justify-self: center; font-size: 1.5rem; padding: 7px 11px 7px 15px; }
+.brand-stack .wm-sub { font-size: .62rem; }
+@media (max-width: 380px) { .wm-main { font-size: 1rem; letter-spacing: .1em; } .wm-sub { letter-spacing: .14em; } }
 @media (prefers-reduced-motion: no-preference) {
   .hs2 { animation: wipe2 12s infinite; }
   .hs3 { animation: wipe3 12s infinite; }
@@ -575,7 +578,7 @@ footer .foot-contact ul, footer .foot-jump ul { justify-content: center; justify
 <header class="site-head">
   <div class="wrap head-in">
     <a class="brand" href="#top" aria-label="Courage Group, home">
-      <svg class="brand-shield " viewBox="0 0 120 132" aria-hidden="true"><use href="#shield"/></svg><span class="wm"><span class="wm-main">COURAGE</span><span class="wm-sub">Group &middot; Pretoria</span></span>
+      <svg class="brand-shield " viewBox="0 0 120 132" aria-hidden="true"><use href="#shield"/></svg><span class="wm"><span class="wm-main">COURAGE</span><span class="wm-sub">Tree &middot; Plumbing &middot; Building</span></span>
     </a>
     <nav class="nav-desktop" aria-label="Main">
       <a href="#services">Services</a>
@@ -611,7 +614,7 @@ footer .foot-contact ul, footer .foot-jump ul { justify-content: center; justify
     </div>
     <div class="wrap hero-in">
       <svg class="hero-shield" width="104" height="114" viewBox="0 0 120 132" aria-hidden="true"><use href="#shield"/></svg>
-      <div class="hero-name" aria-hidden="true">Courage Group</div>
+      <div class="hero-plate" aria-hidden="true"><b>COURAGE</b><span>Tree &middot; Plumbing &middot; Building</span></div>
       <h1 id="hero-title"><span class="sr-only">Courage Group: trees, plumbing and building in Pretoria</span><span class="words" aria-hidden="true"><span>Trees.</span><span>Plumbing.</span><span>Building.</span></span></h1>
       <p>Tree felling, drainage and bathroom work for homes and businesses in Pretoria. Call or WhatsApp for a free quote.</p>
       <div class="hero-cta">
@@ -869,7 +872,7 @@ footer .foot-contact ul, footer .foot-jump ul { justify-content: center; justify
     <div class="foot-grid">
       <div class="foot-brand">
         <a class="brand brand-stack" href="#top">
-      <svg class="brand-shield foot-shield" viewBox="0 0 120 132" aria-hidden="true"><use href="#shield"/></svg><span class="wm"><span class="wm-main">COURAGE</span><span class="wm-sub">Group &middot; Pretoria</span></span>
+      <svg class="brand-shield foot-shield" viewBox="0 0 120 132" aria-hidden="true"><use href="#shield"/></svg><span class="wm"><span class="wm-main">COURAGE</span><span class="wm-sub">Tree &middot; Plumbing &middot; Building</span></span>
     </a>
         <p class="foot-blurb" style="margin-top:10px;max-width:34ch;font-size:.95rem">Tree felling, plumbing and building work in Pretoria and surrounds.</p>
       </div>
