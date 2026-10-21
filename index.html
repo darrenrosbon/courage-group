@@ -281,18 +281,29 @@ main > section.section.process { position: relative; isolation: isolate; overflo
 .brand-stack .wm-sub { font-size: .62rem; }
 @media (max-width: 380px) { .wm-main { font-size: 1rem; letter-spacing: .1em; } .wm-sub { letter-spacing: .14em; } }
 @media (prefers-reduced-motion: no-preference) {
-  .hs2 { animation: wipe2 12s infinite; }
-  .hs3 { animation: wipe3 12s infinite; }
-  .words span { animation-duration: 12s; animation-iteration-count: infinite; }
-  .words span:nth-child(1) { animation-name: w1; }
-  .words span:nth-child(2) { animation-name: w2; }
-  .words span:nth-child(3) { animation-name: w3; }
+  /* Seamless loop: each slide wipes in over the previous one in turn (the first wipes back in over the last),
+     and a slide is only reset while the next one already covers it, so there is never a cut. 4s per slide. */
+  .hs { animation: slide 12s infinite; }
+  .hs1 { animation-delay: -.8s; }
+  .hs2 { animation-delay: 3.2s; }
+  .hs3 { animation-delay: 7.2s; }
+  .words span { animation: word 12s infinite; }
+  .words span:nth-child(1) { animation-delay: -.8s; }
+  .words span:nth-child(2) { animation-delay: 3.2s; }
+  .words span:nth-child(3) { animation-delay: 7.2s; }
 }
-@keyframes wipe2 { 0%, 32% { clip-path: polygon(0 0, 0 0, -30% 100%, 0 100%); opacity: 1; } 40%, 94% { clip-path: polygon(0 0, 130% 0, 100% 100%, 0 100%); opacity: 1; } 100% { clip-path: polygon(0 0, 130% 0, 100% 100%, 0 100%); opacity: 0; } }
-@keyframes wipe3 { 0%, 65% { clip-path: polygon(0 0, 0 0, -30% 100%, 0 100%); opacity: 1; } 73%, 94% { clip-path: polygon(0 0, 130% 0, 100% 100%, 0 100%); opacity: 1; } 100% { clip-path: polygon(0 0, 130% 0, 100% 100%, 0 100%); opacity: 0; } }
-@keyframes w1 { 0%, 29% { opacity: 1; transform: none; } 34%, 95% { opacity: 0; transform: translateY(-22px); } 100% { opacity: 0; transform: translateY(22px); } }
-@keyframes w2 { 0%, 31% { opacity: 0; transform: translateY(22px); } 37%, 62% { opacity: 1; transform: none; } 67%, 100% { opacity: 0; transform: translateY(-22px); } }
-@keyframes w3 { 0%, 64% { opacity: 0; transform: translateY(22px); } 70%, 92% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; transform: translateY(-22px); } }
+@keyframes slide {
+  0% { clip-path: polygon(0 0, 0 0, -30% 100%, 0 100%); z-index: 3; }
+  6.7%, 33.2% { clip-path: polygon(0 0, 130% 0, 100% 100%, 0 100%); z-index: 3; }
+  33.3%, 40% { clip-path: polygon(0 0, 130% 0, 100% 100%, 0 100%); z-index: 2; }
+  40.1%, 100% { clip-path: polygon(0 0, 0 0, -30% 100%, 0 100%); z-index: 1; }
+}
+@keyframes word {
+  0% { opacity: 0; transform: translateY(22px); }
+  8%, 30% { opacity: 1; transform: none; }
+  35% { opacity: 0; transform: translateY(-22px); }
+  35.1%, 100% { opacity: 0; transform: translateY(22px); }
+}
 @media (prefers-reduced-motion: reduce) {
   .words { height: auto; width: auto; font-size: clamp(1.8rem, 8vw, 3rem); }
   .words span { position: static; display: inline; opacity: 1; margin-inline: .12em; }
